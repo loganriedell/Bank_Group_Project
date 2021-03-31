@@ -1,6 +1,7 @@
 # Compiled class file
 *.class
-
+#To protect AWS password
+*.properties
 # Log file
 *.log
 
