@@ -20,9 +20,9 @@ public class Transaction {
 	private int transactionID;
 
 	private Date dateOfTransaction;
-  private float amount;
-	private Account accountFrom;
-  private Account accountTo;
+	private double amount;
+	private int accountFrom;
+	private int accountTo;
 
 	//Constructors
 	public Transaction()
@@ -30,21 +30,21 @@ public class Transaction {
 
 	}
 
-	public Transaction(Date dateOfTransaction, float amount, Account accountFrom, Account accountTo)
+	public Transaction(Date dateOfTransaction, double amount, Account accountFrom, Account accountTo)
 	{
 		this.dateOfTransaction = dateOfTransaction;
-    this.amount = amount;
-    this.accountFrom = accountFrom;
-    this.accountTo = accountTo;
+	    this.amount = amount;
+	    this.accountFrom = accountFrom;
+	    this.accountTo = accountTo;
 	}
 
-	public Transaction(int transactionID, Date dateOfTransaction, float amount, Account accountFrom, Account accountTo)
+	public Transaction(int transactionID, Date dateOfTransaction, double amount, Account accountFrom, Account accountTo)
 	{
 		this.transactionID = transactionID;
-    this.dateOfTransaction = dateOfTransaction;
-    this.amount = amount;
-    this.accountFrom = accountFrom;
-    this.accountTo = accountTo;
+	    this.dateOfTransaction = dateOfTransaction;
+	    this.amount = amount;
+	    this.accountFrom = accountFrom;
+	    this.accountTo = accountTo;
 	}
 
 	//Methods
@@ -52,7 +52,7 @@ public class Transaction {
   public int getTransactionID() {
 		return transactionID;
 	}
-	public void setTransactionID(int transactionID) {
+  public void setTransactionID(int transactionID) {
 		this.transactionID = transactionID;
 	}
 
@@ -64,11 +64,11 @@ public class Transaction {
     this.dateOfTransaction = dateOfTransaction;
   }
 
-  public float getAmount() {
+  public double getAmount() {
     return amount;
   }
 
-  public void setAmount(float amount) {
+  public void setAmount(double amount) {
     this.amount = amount;
   }
 
