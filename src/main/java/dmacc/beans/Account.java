@@ -1,6 +1,7 @@
 package dmacc.beans;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -10,19 +11,31 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 @Entity
+@Table(name = "accounts")
 public class Account {
 	//private variables
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ID;
-	private float balance;
-	private float interestRate;
+	private double balance;
+	private double interestRate;
 	private Date dateCreated;
 	//I added a type variable for things like checking or savings account.
 	private String type;
+	
+	@OneToMany(orphanRemoval = true, fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@JoinColumn(name = "at_id", referencedColumnName = "ID")
+	List<Transaction> transactions = new ArrayList();
+	//I am pretty sure this is correct
+	@ManyToOne
+	@JoinColumn(name="userID")
+	private User user;
+	
 	public Account(float balance, float interestRate, Date dateCreated, String type, User user) {
 		super();
 		this.balance = balance;
@@ -32,15 +45,13 @@ public class Account {
 		this.user = user;
 	}
 
-	//I am pretty sure this is correct
-	@ManyToOne
-	@JoinColumn(name="userID")
-	private User user;
-	
-	
-	
 	//constructors
-	public Account(float balance, Date dateCreated) {
+	public Account(double balance)
+	{
+		super();
+		this.balance = balance;
+	}
+	public Account(double balance, Date dateCreated) {
 		super();
 		this.balance = balance;
 		this.dateCreated = dateCreated;
@@ -65,10 +76,10 @@ public class Account {
 	}
 	//I made both of these methods void just so they add or subtract from the balance.
 	//I can make them return the amount if it helps
-	public void deposit(float amount) {
+	public void deposit(double amount) {
 		this.balance += amount;
 	}
-	public void withdrawal(float amount) {
+	public void withdrawal(double amount) {
 		this.balance -= amount;
 	}
 	
@@ -87,25 +98,25 @@ public class Account {
 	/**
 	 * @return the balance
 	 */
-	public float getBalance() {
+	public double getBalance() {
 		return balance;
 	}
 	/**
-	 * @param balance the balance to set
+	 * @param d the balance to set
 	 */
-	public void setBalance(float balance) {
-		this.balance = balance;
+	public void setBalance(double d) {
+		this.balance = d;
 	}
 	/**
 	 * @return the interestRate
 	 */
-	public float getInterestRate() {
+	public double getInterestRate() {
 		return interestRate;
 	}
 	/**
 	 * @param interestRate the interestRate to set
 	 */
-	public void setInterestRate(float interestRate) {
+	public void setInterestRate(double interestRate) {
 		this.interestRate = interestRate;
 	}
 	/**
@@ -148,6 +159,14 @@ public class Account {
 	public String toString() {
 		return "Account [ID=" + ID + ", balance=" + balance + ", interestRate=" + interestRate + ", dateCreated="
 				+ dateCreated + ", type=" + type + ", user=" + user + "]";
+	}
+
+	public List<Transaction> getTransactions() {
+		return transactions;
+	}
+
+	public void setTransactions(List<Transaction> transactions) {
+		this.transactions = transactions;
 	}
 	
 	

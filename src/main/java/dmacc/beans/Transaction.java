@@ -10,36 +10,49 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="transactions")
 public class Transaction {
 	//Variables
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int transactionID;
+	private long transactionID;
 
 	private Date dateOfTransaction;
 	private double amount;
-	private int accountFrom;
-	private int accountTo;
+	private long accountFrom;
+	private long accountTo;
+	
+	@ManyToOne
+	@JoinColumn(name="ID")
+	private Account account;
 
 	//Constructors
 	public Transaction()
 	{
-
+		super();
 	}
-
-	public Transaction(Date dateOfTransaction, double amount, Account accountFrom, Account accountTo)
+	public Transaction(double amount) {
+		super();
+		this.amount = amount;
+	}
+	public Transaction(Date dateOfTransaction, double amount, long accountFrom, long accountTo)
 	{
+		super();
 		this.dateOfTransaction = dateOfTransaction;
 	    this.amount = amount;
 	    this.accountFrom = accountFrom;
 	    this.accountTo = accountTo;
 	}
 
-	public Transaction(int transactionID, Date dateOfTransaction, double amount, Account accountFrom, Account accountTo)
+	public Transaction(int transactionID, Date dateOfTransaction, double amount, long accountFrom, long accountTo)
 	{
+		super();
 		this.transactionID = transactionID;
 	    this.dateOfTransaction = dateOfTransaction;
 	    this.amount = amount;
@@ -49,7 +62,7 @@ public class Transaction {
 
 	//Methods
 
-  public int getTransactionID() {
+  public long getTransactionID() {
 		return transactionID;
 	}
   public void setTransactionID(int transactionID) {
@@ -72,19 +85,19 @@ public class Transaction {
     this.amount = amount;
   }
 
-  public Account getAccountFrom() {
+  public long getAccountFrom() {
     return accountFrom;
   }
 
-  public void setAccountFrom(Account accountFrom) {
+  public void setAccountFrom(long accountFrom) {
     this.accountFrom = accountFrom;
   }
 
-  public Account getAccountTo() {
+  public long getAccountTo() {
     return accountTo;
   }
 
-  public void setAccountTo(Account accountTo) {
+  public void setAccountTo(long accountTo) {
     this.accountTo = accountTo;
   }
 

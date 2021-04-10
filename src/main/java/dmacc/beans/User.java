@@ -2,6 +2,7 @@ package dmacc.beans;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -10,14 +11,17 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="users")
 public class User {
 	//Variables
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int userID;
+	private long userID; 
 	
 	private String firstName;
 	private String lastName;
@@ -39,26 +43,34 @@ public class User {
 	  private ArrayList<Account> accounts;
 	 */
 	
-	@OneToMany(mappedBy="user", orphanRemoval = true)
-	private Set<Account> accounts;
+	@OneToMany(orphanRemoval = true, fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "ua_id", referencedColumnName = "userId")
+	List<Account> accounts = new ArrayList();
 	
 	
 	
 	//Constructors
+	public User()
+	{
+		super();
+	}
 	public User(String firstName, String lastName)
 	{
+		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		
 	}
 	public User(String firstName, String lastName, String address)
 	{
+		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
 	}
 	public User(String firstName, String lastName, String address, Date dateCreated)
 	{
+		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
@@ -66,6 +78,7 @@ public class User {
 	}
 	public User(String firstName, String lastName, String address, Date dateCreated, String socialSecurity, String email)
 	{
+		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
@@ -80,18 +93,18 @@ public class User {
 		return firstName;
 	}
 
-	public Set<Account> getAccounts() {
+	public List<Account> getAccounts() {
 		return accounts;
 	}
 	
-	public void setAccounts(Set<Account> accounts) {
+	public void setAccounts(ArrayList<Account> accounts) {
 		this.accounts = accounts;
 	}
 	
-	public int getUserID() {
+	public long getUserID() {
 		return userID;
 	}
-	public void setUserID(int userID) {
+	public void setUserID(long userID) {
 		this.userID = userID;
 	}
 	public void setFirstName(String firstName) {
