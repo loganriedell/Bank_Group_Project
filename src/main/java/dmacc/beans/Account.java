@@ -31,7 +31,7 @@ public class Account {
 	@OneToMany(orphanRemoval = true, fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name = "at_id", referencedColumnName = "ID")
 	List<Transaction> transactions = new ArrayList();
-	//I am pretty sure this is correct
+	//I am pretty sure this is correct 
 	@ManyToOne
 	@JoinColumn(name="userID")
 	private User user;
