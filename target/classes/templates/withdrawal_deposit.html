@@ -10,15 +10,15 @@
 <body>
 	<p>
 		Amount:
-		<form th:object=${newTransaction}" th:action="@{newTransaction/{id}(id=account)" method='POST' name="transactForm">
-			<select name ="action">
+		<form th:object="${newTransaction}" th:action="@{newTransaction/{id}(id=account.ID)" method='POST' name="transactForm">
+			<select th:name="action">
 				<option value="deposit">Deposit</option>
 				<option value="withdrawal">Withdrawal</option>
 			</select>
 			<input type="text" size="20" name="transactionAmount" th:field="*{amount}">
 		
 			<input type="submit" value="submit" name="submitbtn">
-			<input type="hidden" value = @{
+			<input type="hidden" th:object="${account}">
 		</form>
 </body>	
 </html>
