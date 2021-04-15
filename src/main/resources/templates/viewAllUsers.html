@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="viewUserAccounts" method="post">
+<table>
+	<tr th:each="currentUser: ${users}">
+	<td><input type="radio" name="id" value="${currentUser.id}"></td>
+	
+	<td th:text="${currentUser.firstName}" />
+	<td th:text="${currentUser.lastName}" />
+
+	</tr>
+</table>
+	<input type= "submit" value="view user's accounts">
+</form>
+</body>
+</html>

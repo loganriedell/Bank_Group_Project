@@ -39,8 +39,6 @@ public class WebController {
 		}
 
 		model.addAttribute("users", userRepo.findAll());
-		return "results";
-	}
 
 	@GetMapping("/inputUser")
 	public String addNewUser(Model model) {
@@ -141,4 +139,12 @@ public class WebController {
 		empRepo.save(e);
 		return viewAllEmployees(model);
 	}
+
+	@GetMapping("/deleteEmployee/{employeeID}")
+	public String deleteEmployee(@PathVariable("employeeID") long id, Model model) {
+		Employee e = empRepo.findById(id).orElse(null);
+		empRepo.delete(e);
+		return viewAllAccounts(model);
+	}
 }
+
