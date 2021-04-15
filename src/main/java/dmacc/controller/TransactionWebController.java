@@ -14,7 +14,7 @@ import dmacc.beans.User;
 import dmacc.repository.AccountRepo;
 import dmacc.repository.UserRepo;
 @Controller
-public class WebController {
+public class TransactionWebController {
 
 	@Autowired
 	UserRepo userRepo;
@@ -33,7 +33,7 @@ public class WebController {
 	@PostMapping("/newTransaction/{id}")
 	public String addTransaction(@PathVariable("id") long id, @ModelAttribute Transaction t, Model model) {
 		Account accnt = accntRepo.findById(id).orElse(null);
-		double balance = accnt.getBalance();
-		balance.deposit
+		accnt.deposit(t.getAmount());
+		return "";
 	}
 }

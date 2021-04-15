@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Input or Edit Account</title>
+</head>
+<body>
+	<form th:object="${newAcount}" th:action="@{/updateAccount/{AccountId}(AccountId=${newAccount.ID})}" method='POST' id="accountForm">
+		
+		Balance: <input name="balance" size="20" id="balance" th:field="*{balance}"><br />
+
+		Interest Rate: <input name="interestRate" size="20" id="interestRate" th:field="*{interestRate}"><br />
+
+		Date Created: <input name="dateCreated" size="20" id="dateCreated" th:field="*{dateCreated}"><br />
+
+		Account Type: <input name="type" size="20" id="type" th:field="*{type}"><br />
+
+		<input name="submit" type="submit" value="submit" />
+	</form>
+</body>
+</html>
