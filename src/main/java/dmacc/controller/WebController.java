@@ -39,6 +39,8 @@ public class WebController {
 		}
 
 		model.addAttribute("users", userRepo.findAll());
+		return viewAllUsers(model);
+	}
 
 	@GetMapping("/inputUser")
 	public String addNewUser(Model model) {
