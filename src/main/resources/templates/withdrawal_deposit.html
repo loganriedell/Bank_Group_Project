@@ -1,0 +1,23 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>New Transaction</title>
+	<style>
+	
+	</style>
+</head>
+<body>
+	<p>
+		Amount:
+		<form th:object=${newTransaction}" th:action="@{newTransaction/{id}(id=account)" method='POST' name="transactForm">
+			<select name ="action">
+				<option value="deposit">Deposit</option>
+				<option value="withdrawal">Withdrawal</option>
+			</select>
+			<input type="text" size="20" name="transactionAmount" th:field="*{amount}">
+		
+			<input type="submit" value="submit" name="submitbtn">
+		</form>
+</body>	
+</html>
