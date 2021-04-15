@@ -68,6 +68,13 @@ public class WebController {
 		return viewAllUsers(model);
 	}
 	
+	@GetMapping("/deleteUser/{UserID}")
+	public String deleteUser(@PathVariable("userID") long id, Model model) {
+		User u = userRepo.findById(id).orElse(null);
+		userRepo.delete(u);
+		return viewAllUsers(model);
+	}
+	
 	
 	@GetMapping({ "/", "viewAllAccounts" })
 	public String viewAllAccounts(Model model) {
@@ -105,6 +112,13 @@ public class WebController {
 		return viewAllUsers(model);
 	}
 	
+	@GetMapping("/deleteAccount/{ID}")
+	public String deleteAccount(@PathVariable("ID") long id, Model model) {
+		Account a = acctRepo.findById(id).orElse(null);
+		acctRepo.delete(a);
+		return viewAllAccounts(model);
+	}
+	
 	
 	@GetMapping({ "/", "viewAllEmployees" })
 	public String viewAllEmployees(Model model) {
@@ -140,5 +154,12 @@ public class WebController {
 	public String reviseEmployee(Employee e, Model model) {
 		empRepo.save(e);
 		return viewAllEmployees(model);
+	}
+	
+	@GetMapping("/deleteEmployee/{employeeID}")
+	public String deleteEmployee(@PathVariable("employeeID") long id, Model model) {
+		Employee e = empRepo.findById(id).orElse(null);
+		empRepo.delete(e);
+		return viewAllAccounts(model);
 	}
 }
