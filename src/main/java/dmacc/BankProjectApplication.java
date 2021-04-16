@@ -16,7 +16,7 @@ import dmacc.repository.AccountRepo;
 import dmacc.repository.UserRepo;
 
 @SpringBootApplication
-public class BankProjectApplication implements CommandLineRunner {
+public class BankProjectApplication{
 
 	public static void main(String[] args) {
 		SpringApplication.run(BankProjectApplication.class, args);
@@ -29,8 +29,8 @@ public class BankProjectApplication implements CommandLineRunner {
 	private UserRepo userRepo;
 	
 	//For Testing so far
-	@Override
-	public void run(String... args) throws Exception{
+	//@Override
+	//public void run(String... args) throws Exception{
 		/*
 		//This creates a new user and a new account for that user and persists them both using the userRepo
 		//Just fill out the info for parameters
@@ -66,5 +66,5 @@ public class BankProjectApplication implements CommandLineRunner {
 			System.out.println("First transaction is " + trans.getAmount());
 		}
 		*/
-	}
 }
+

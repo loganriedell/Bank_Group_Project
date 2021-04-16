@@ -1,5 +1,7 @@
 package dmacc.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import dmacc.beans.Account;
 import dmacc.beans.Employee;
+import dmacc.beans.Transaction;
 import dmacc.beans.User;
 import dmacc.repository.AccountRepo;
 import dmacc.repository.EmployeeRepo;
@@ -37,11 +40,26 @@ public class WebController {
 		if (userRepo.findAll().isEmpty()) {
 			return addNewUser(model);
 		}
-
 		model.addAttribute("users", userRepo.findAll());
-		return viewAllUsers(model);
+		return "viewAllUsers";
 	}
-
+	@GetMapping("/viewUserAccounts/{id}")
+	public String viewUserAccount(@PathVariable("id") long id, Model model)
+	{
+		User user = userRepo.findById(id).orElse(null);
+		List<Account> userAccounts = user.getAccounts();
+		model.addAttribute("userAccounts", userAccounts);
+		return "viewUserAccounts";
+	}
+	@GetMapping("/viewAccountTransactions/{id}")
+	public String viewAccountTransactions(@PathVariable("id") long id, Model model)
+	{
+		Account account = acctRepo.findById(id).orElse(null);
+		List<Transaction> transactions = account.getTransactions();
+		model.addAttribute("transactions", transactions);
+		return "viewAccountTransactions";
+		
+	}
 	@GetMapping("/inputUser")
 	public String addNewUser(Model model) {
 		User u = new User();
@@ -69,7 +87,7 @@ public class WebController {
 	}
 	
 	
-	@GetMapping({ "/", "viewAllAccounts" })
+	@GetMapping({"viewAllAccounts" })
 	public String viewAllAccounts(Model model) {
 		if (acctRepo.findAll().isEmpty()) {
 			return addNewAccount(model);
@@ -104,16 +122,19 @@ public class WebController {
 		acctRepo.save(a);
 		return viewAllUsers(model);
 	}
-	
-	
-	@GetMapping({ "/", "viewAllEmployees" })
+	@GetMapping("/deleteAccount/{id}")
+	public String deleteAccount(@PathVariable("id") long id, Model model) {
+		Account account = acctRepo.findById(id).orElse(null);
+		return viewAllAccounts(model);
+	}
+
+	@GetMapping({"/viewAllEmployees" })
 	public String viewAllEmployees(Model model) {
 		if (empRepo.findAll().isEmpty()) {
 			return addNewEmployee(model);
 		}
-
 		model.addAttribute("employees", empRepo.findAll());
-		return "results";
+		return "viewAllEmployees";
 	}
 
 	@GetMapping("/inputEmployee")
@@ -147,6 +168,13 @@ public class WebController {
 		Employee e = empRepo.findById(id).orElse(null);
 		empRepo.delete(e);
 		return viewAllAccounts(model);
+	}
+	
+	@GetMapping("/deleteUser/{userID}")
+	public String deleteUser(@PathVariable("userID") long id, Model model) {
+		User user = userRepo.findById(id).orElse(null);
+		userRepo.delete(user);
+		return viewAllUsers(model);
 	}
 }
 

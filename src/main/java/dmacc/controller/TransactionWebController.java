@@ -23,21 +23,32 @@ public class TransactionWebController {
 	@Autowired
 	AccountRepo accntRepo;
 	
-	@GetMapping("/newTransaction/{id}")
-	public String addTransaction(@PathVariable("id") long id, Model model) {
-		Account accnt = accntRepo.findById(id).orElse(null);
+	@GetMapping("/newTransaction")
+	public String addTransaction(Model model) {
+		Account accnt = new Account(300);
 		model.addAttribute("account", accnt);
 		Transaction t = new Transaction();
 		String action = "";
 		model.addAttribute("action", action);
 		model.addAttribute("newTransaction", t);
-		return "withdrawal/depostit";	
+		return "withdrawal_deposit";	
 		
 	}
-	@PostMapping("/newTransaction/{id}")
-	public String addTransaction(@PathVariable("id") long id, @ModelAttribute Transaction t, @ModelAttribute Account accnt, 
+	@PostMapping("/newTransaction")
+	public String addTransaction(/*@PathVariable("id") long id,*/ @ModelAttribute Transaction t, @ModelAttribute Account accnt, 
 			@RequestParam String action, Model model) {
-		if model.
-		return "";
+		accnt.setBalance(300);
+		double balance = accnt.getBalance();
+		if(action.equals("deposit"))
+		{
+			accnt.setBalance(balance += t.getAmount());
+		}
+		else {
+			accnt.setBalance(balance -= t.getAmount());
+		}
+		model.addAttribute("account", accnt);
+		model.addAttribute("transaction", t);
+		model.addAttribute("action", action);
+		return "transresult";
 	}
 }

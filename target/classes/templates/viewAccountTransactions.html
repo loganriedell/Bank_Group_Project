@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Account Transactions</title>
+</head>
+<body>
+	<form action="" method="post">
+	<table>
+	<tr th:each="currentTransaction: ${transactions}">
+		<td th:text="${currentTransaction.amount}"/>
+		<td th:text="${currentTransaction.dateOfTransaction}"/>
+	</tr>
+	</table>
+	</form>
+</body>
+</html>

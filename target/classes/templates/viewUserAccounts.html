@@ -2,18 +2,27 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>User's Accounts</title>
 </head>
 <body>
-	<form action="viewAccount" method="post">
+	<form action="" method="post">
 	<table>
-	<tr th:each="currentAccount: ${accounts}">
-		<td><input type="radio" name="id" value="${currentUser.id}"></td>
+	<tr th:each="currentAccount: ${userAccounts}">
 		<td th:text="${currentAccount.balance}"/>
 		<td th:text="${currentAccount.type}"/>
+		<td>
+			<a th:href="@{/viewAccountTransactions/{id}(id=${currentAccount.ID})}">
+				<input type="button" value="View Transactions">
+			</a>
+			<a th:href="@{/editAccount/{id}(id=${currentAccount.ID})}">
+				<input type="button" value="Edit Account">
+			</a>
+			<a th:href="@{/deleteAccount/{id}(id=${currentAccount.ID})}">
+				<input type="button" value="Delete Account">
+			</a>
+		</td>
 		</tr>
 	</table>
-	<input type= "submit" value="view account">
 	</form>
 </body>
 </html>
