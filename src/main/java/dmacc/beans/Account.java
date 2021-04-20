@@ -92,7 +92,7 @@ public class Account {
 	/**
 	 * @param iD the iD to set
 	 */
-	public void setID(int iD) {
+	public void setID(long iD) {
 		ID = iD;
 	}
 	/**

@@ -5,13 +5,16 @@
 <title>Account Transactions</title>
 </head>
 <body>
-	<form action="" method="post">
+	<form action="" method="GET">
 	<table>
 	<tr th:each="currentTransaction: ${transactions}">
 		<td th:text="${currentTransaction.amount}"/>
 		<td th:text="${currentTransaction.dateOfTransaction}"/>
 	</tr>
 	</table>
+	<a th:href="@{/viewUserAccounts/{id}(id=${user.userID})}">
+		<input type="button" value="Back To Accounts">
+	</a>
 	</form>
 </body>
 </html>

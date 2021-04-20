@@ -5,24 +5,30 @@
 <title>User's Accounts</title>
 </head>
 <body>
-	<form action="" method="post">
+	<form action="" method="get">
 	<table>
-	<tr th:each="currentAccount: ${userAccounts}">
+	<tr th:each="currentAccount: ${user.accounts}">
 		<td th:text="${currentAccount.balance}"/>
 		<td th:text="${currentAccount.type}"/>
 		<td>
 			<a th:href="@{/viewAccountTransactions/{id}(id=${currentAccount.ID})}">
 				<input type="button" value="View Transactions">
 			</a>
-			<a th:href="@{/editAccount/{id}(id=${currentAccount.ID})}">
+			<a th:href="@{/editAccount/{AccountID}/{UserID}(AccountID=${currentAccount.ID}, UserID=${user.userID})}">
 				<input type="button" value="Edit Account">
 			</a>
-			<a th:href="@{/deleteAccount/{id}(id=${currentAccount.ID})}">
+			<a th:href="@{/deleteAccount/{accountID}/{userID}(accountID=${currentAccount.ID}, userID=${user.userID})}">
 				<input type="button" value="Delete Account">
+			</a>
+			<a th:href="@{/newTransaction/{AccountID}/{UserID}(AccountID=${currentAccount.ID}, UserID=${user.userID})}">
+				<input type="button" value="New Transaction">
 			</a>
 		</td>
 		</tr>
 	</table>
+		<a th:href="@{/inputAccount{id}(id=${user.userID})}"> 
+				<input type="button" value="Add Account">
+		</a>
 	</form>
 </body>
 </html>

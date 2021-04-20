@@ -7,5 +7,6 @@ import dmacc.beans.Account;
 
 @Repository
 public interface AccountRepo extends JpaRepository<Account, Long>{
+	
 
 }

@@ -19,6 +19,7 @@
 		}
 
         body {
+        	background-attachment:fixed;
             width: 700px;
             height: 100%;
             margin: auto;
@@ -84,7 +85,7 @@
 <body>
 	<div id="mainFormDiv">
 		
-		<form th:object="${newTransaction}" th:action="@{/newTransaction}" method='POST' name="transactForm">
+		<form th:object="${newTransaction}" th:action="@{/newTransaction/{AccountID}/{UserID}(AccountID=${account.ID}, UserID=${user.userID})}" method='POST' name="transactForm">
 			<h1 style="font-size:200px">$</h1>
 			<h1>Deposit / Withdrawal</h1>
 			
