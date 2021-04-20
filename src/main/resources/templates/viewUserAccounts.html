@@ -1,8 +1,63 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+	<meta charset="UTF-8">
 <title>User's Accounts</title>
+<style>
+	body {
+		background-color: #12a370;
+		text-align: center;
+		font-size: 150%;
+		font-family:'Staatliches';
+		margin: 5%;
+	}
+	
+	h1 {
+		background-color:#12a370;
+		color: white;
+		border: thin solid black;
+		text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+		
+	}
+	
+	
+	form {
+		background-color: #c2c5cc;
+		width: 50%;
+		margin: auto;
+		padding: 5%;
+		border: thick solid black;
+	}
+	
+	table {
+		margin-left: 5%; 
+	}
+	
+	input[type="button"] {
+		cursor: pointer;
+		background-color: #5b5c5e;
+		color: white; 
+		font-size: 70%;
+		font-family:'Staatliches';
+		text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+		
+	}
+	
+	input[type="button"]:hover {
+		cursor: pointer;
+		background-color: white;
+		color: black;
+		border: 2px solid black;
+		text-shadow: none;
+	}
+	
+	
+	
+	
+
+</style>
 </head>
 <body>
 	<form action="" method="get">
@@ -25,7 +80,7 @@
 			</a>
 		</td>
 		</tr>
-	</table>
+	</table><br>
 		<a th:href="@{/inputAccount{id}(id=${user.userID})}"> 
 				<input type="button" value="Add Account">
 		</a>
