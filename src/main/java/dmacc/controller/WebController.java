@@ -190,7 +190,7 @@ public class WebController {
 	public String deleteEmployee(@PathVariable("employeeID") long id, Model model) {
 		Employee e = empRepo.findById(id).orElse(null);
 		empRepo.delete(e);
-		return "/view;
+		return "/view";
 	}
 	
 	@GetMapping("/deleteUser/{userID}")
