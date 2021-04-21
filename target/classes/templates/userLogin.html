@@ -1,13 +1,45 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>User login</title>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+	<meta charset="UTF-8">
+<title>User Login</title>
+<style>
+	body {
+		background-color: #12a370;
+		font-family: 'Staatliches';
+		margin: 5%;
+		
+	}
+	
+	form {
+		background-color: #c2c5cc;
+		width: 40%;
+		margin: auto;
+		padding: 5%;
+	}
+	
+	form label, input {
+		margin-left: 30%;
+		font-size: 120%;
+		line-height: 30px;
+	}
+	
+	input[type="submit"] {
+		margin-left: 45%;
+		margin-top: 5%;
+		background-color:  #5b5c5e;
+		color: white;
+		font-family: 'Staatliches';
+		font-size: 120%;
+	}
+</style>
 </head>
 <body>
 	<form th:object="${loginAttempt}" th:action="@{/userLogin}" method='GET'>
-		<input id="emailInput" type="text" name="userEmailInput" th:field="*{email}">
-		<input id="SocialInput" type="text" name="userSocialInput" th:field="*{socialSecurity}">
+		<label>Email: </label><br><input id="emailInput" type="text" name="userEmailInput" th:field="*{email}"><br>
+		<label>SSN: </label><br><input id="SocialInput" type="text" name="userSocialInput" th:field="*{socialSecurity}"><br>
 		<input name="submit" type="submit" value="Login">
 	</form>
 </body>

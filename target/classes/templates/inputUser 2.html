@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
 <head>
-<meta charset="UTF-8">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
 	<meta charset="UTF-8">
-<title>Input or Edit Account</title>
+<title>Input or Edit User</title>
 <style>
 	body {
 		background-color: #12a370;
@@ -40,21 +39,20 @@
 </style>
 </head>
 <body>
-	<form th:object="${newAccount}" th:action="@{/updateAccount/{UserID}/{AccountId}(AccountId=${newAccount.ID}, UserID=${user.userID})}" method='POST' id="accountForm">
+	<form th:object="${newUser}" th:action="@{/updateUser/{userID}(userID=${newUser.userID})}" method='POST' id="userForm">
 		
-		Balance: <input name="balance" size="20" id="balance" th:field="*{balance}"><br />
+		First Name: <input name="firstName" size="20" id="firstName" th:field="*{firstName}"><br />
 
-		Interest Rate: <input name="interestRate" size="20" id="interestRate" th:field="*{interestRate}"><br />
+		Last Name: <input name="lastName" size="20" id="lastName" th:field="*{lastName}"><br />
+
+		Address: <input name="address" size="20" id="address" th:field="*{address}"><br />
 
 		Date Created: <input name="dateCreated" size="20" id="dateCreated" th:field="*{dateCreated}"><br />
 
-		Account Type: <select name="type" size="1" id="type" th:field="*{type}">
-							<option th:value="Checking" th:text="Checking"></option>
-							<option th:value="Savings" th:text="Savings"></option>
-							<option th:value="Loan" th:text="Loan"></option>
-					  </select><br>
-		<p>ID: <span th:text="${newAccount.ID}"></span></p>
-		
+		Social Security Number: <input name="socialSecurity" size="20" id="socialSecurity" th:field="*{socialSecurity}"><br />
+
+		Email: <input name="email" size="20" id="email" th:field="*{email}"><br />
+
 		<input name="submit" type="submit" value="submit" />
 	</form>
 </body>
