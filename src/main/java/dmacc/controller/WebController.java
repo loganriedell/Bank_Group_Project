@@ -124,8 +124,8 @@ public class WebController {
 		//return "transresult";
 	}
 
-	@PostMapping("/updateAccount/{UserID}/{AccountId}")
-	public String reviseAccount(@PathVariable("AccountId") long id,
+	@PostMapping("/updateAccount/{UserID}/{AccountID}")
+	public String reviseAccount(@PathVariable("AccountID") long id,
 			@PathVariable("UserID") long userID, @ModelAttribute("newAccount") Account a, Model model) {
 		User user = userRepo.findById(userID).orElse(null);
 		Account account = acctRepo.findById(id).orElse(null);
