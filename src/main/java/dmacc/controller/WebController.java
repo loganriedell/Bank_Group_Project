@@ -232,5 +232,58 @@ public class WebController {
 		return viewAccountTransactions(accountID, model);
 	
 	}
+	@GetMapping({"/userLogin"})
+		public String userLogin(@ModelAttribute User u, Model model) {
+		
+		String email = u.getEmail();
+		String Social = u.getSocialSecurity();
+
+		List<User> UserList = userRepo.findByEmail(email);
+		
+		User myUser = UserList.get(0);
+		Long userID = myUser.getUserID();
+		if(UserList.get(0) == null) {
+			System.out.println("Email not found");
+			return "/userLogin";
+		}
+	
+		if(Social.equals( myUser.getSocialSecurity())) {
+			return viewUserAccount(userID, model);
+		}
+		 
+		return"/userLogin";
+		}
+	@GetMapping("/toUserLogin")
+	public String toUserLoginFunct(Model model) {
+		User u = new User();
+		model.addAttribute("loginAttempt", u);
+		return "/userLogin";
+	}
+	@GetMapping({"/employeeLogin"})
+	public String employeeLogin(@ModelAttribute Employee e, Model model) {
+	
+	String email = e.getEmail();
+	String firstName = e.getFirstName();
+
+	List<Employee> EmployeeList = empRepo.findByEmail(email);
+	Employee myEmployee = EmployeeList.get(0);
+	if(EmployeeList.get(0) == null) {
+		System.out.println("Email not found");
+		return "/employeeLogin";
+	}
+
+	if(firstName.equals(myEmployee.getFirstName())) {
+		return viewAllUsers(model);
+	}
+	 
+	return"/employeeLogin";
+	}
+	@GetMapping("/toEmployeeLogin")
+	public String toEmployeeLoginFunct(Model model) {
+		Employee e = new Employee();
+		model.addAttribute("loginAttempt", e);
+		return "/employeeLogin";
+	}
+	
 }
 

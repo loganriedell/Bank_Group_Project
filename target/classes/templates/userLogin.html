@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>User login</title>
+</head>
+<body>
+	<form th:object="${loginAttempt}" th:action="@{/userLogin}" method='GET'>
+		<input id="emailInput" type="text" name="userEmailInput" th:field="*{email}">
+		<input id="SocialInput" type="text" name="userSocialInput" th:field="*{socialSecurity}">
+		<input name="submit" type="submit" value="Login">
+	</form>
+</body>
+</html>

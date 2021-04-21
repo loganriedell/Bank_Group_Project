@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * @author Ethan Dorenkamp - edorenkamp
@@ -11,10 +12,11 @@ import javax.persistence.Id;
  * Apr 6, 2021
  */
 @Entity
+
 public class Employee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int employeeId;
+	private long employeeId;
 	private String firstName;
 	private String lastName;
 	private float payRate;
@@ -38,7 +40,7 @@ public class Employee {
 		this.email = email;
 	}
 
-	public Employee(int employeeId, String firstName, String lastName, float payRate, String email) {
+	public Employee(long employeeId, String firstName, String lastName, float payRate, String email) {
 		super();
 		this.employeeId = employeeId;
 		this.firstName = firstName;
@@ -47,7 +49,7 @@ public class Employee {
 		this.email = email;
 	}
 
-	public int getEmployeeId() {
+	public long getEmployeeId() {
 		return employeeId;
 	}
 

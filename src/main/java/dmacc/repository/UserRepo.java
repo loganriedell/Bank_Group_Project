@@ -10,5 +10,7 @@ import dmacc.beans.User;
 @Repository
 public interface UserRepo extends JpaRepository<User, Long>{
 	List<User> findByFirstNameAndLastName(String firstName, String lastName);
+	
+	List<User>findByEmail(String email);
 }
 
