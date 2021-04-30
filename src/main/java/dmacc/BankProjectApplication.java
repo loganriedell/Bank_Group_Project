@@ -22,11 +22,11 @@ public class BankProjectApplication{
 		SpringApplication.run(BankProjectApplication.class, args);
 	}
 
-	@Autowired
-	private AccountRepo accntRepo;
+	//@Autowired
+	//private AccountRepo accntRepo;
 	
-	@Autowired
-	private UserRepo userRepo;
+	//@Autowired
+	//private UserRepo userRepo;
 	
 	//For Testing so far
 	//@Override

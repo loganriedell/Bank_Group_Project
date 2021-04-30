@@ -3,7 +3,7 @@ package dmacc.beans;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
+
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -30,6 +30,7 @@ public class User {
 	private String socialSecurity;
 	private String email;
 	
+	
 	/*I thought I would try this it was on spring boot tutorial Set instead of ArrayList
 	 * looks like it works about the same way but it doesn't work we can do what we know which is to just join the column
 	 * 
@@ -45,7 +46,7 @@ public class User {
 	
 	@OneToMany(orphanRemoval = true, fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "ua_id", referencedColumnName = "userId")
-	List<Account> accounts = new ArrayList();
+	List<Account> accounts = new ArrayList<Account>();
 	
 	
 	
@@ -150,5 +151,6 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 
 }

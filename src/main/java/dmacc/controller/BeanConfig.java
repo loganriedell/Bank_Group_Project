@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import dmacc.beans.Account;
+import dmacc.beans.Employee;
 import dmacc.beans.Transaction;
 import dmacc.beans.User;
 
@@ -21,6 +22,10 @@ public class BeanConfig {
 	}
 	@Bean Transaction transaction() {
 		Transaction bean = new Transaction();
+		return bean;
+	}
+	@Bean Employee employee() {
+		Employee bean = new Employee();
 		return bean;
 	}
 }

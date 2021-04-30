@@ -4,15 +4,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+
 
 /**
  * @author Ethan Dorenkamp - edorenkamp
  * CIS175 - Spring 2021
  * Apr 6, 2021
  */
-@Entity
 
+@Entity
 public class Employee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
