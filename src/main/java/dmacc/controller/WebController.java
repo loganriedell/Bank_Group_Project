@@ -1,5 +1,6 @@
 package dmacc.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -216,6 +217,7 @@ public class WebController {
 	public String addTransaction(@PathVariable("AccountID") long accountID, @PathVariable("UserID") long userID, @ModelAttribute Transaction t, 
 			@RequestParam String action, Model model) {
 		Account account = acctRepo.findById(accountID).orElse(null);
+		t.setDateOfTransaction(LocalDate.now());
 		account.getTransactions().add(t);
 		User user = userRepo.findById(userID).orElse(null);
 		double balance = account.getBalance();
