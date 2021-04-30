@@ -1,12 +1,46 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
 <head>
-<meta charset="UTF-8">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+		<meta charset="UTF-8">
 <title>Input or Edit Employee</title>
+<style>
+	body {
+		background-color: #12a370;
+		font-family: 'Staatliches';
+		margin: 5%;
+	}
+
+	form {
+		background-color: #c2c5cc;
+		margin: auto;
+		width: 50%;
+		padding: 3%;
+		text-align: center;
+		font-size: 150%;
+		line-height: 150%;
+		border: thick solid black;
+	}
+
+	input {
+		line-height: 150%;
+		font-size: 60%;
+	}
+
+	input[type="submit"] {
+		background-color: black;
+		color: white;
+		font-family: 'Staatliches';
+		font-size: 80%;
+		margin-top: 15px;
+	}
+
+</style>
 </head>
 <body>
 	<form th:object="${newEmployee}" th:action="@{/updateEmployee/{employeeId}(employeeId=${newEmployee.employeeId})}" method='POST' id="employeeForm">
-		
+
 		First Name: <input name="firstName" size="20" id="firstName" th:field="*{firstName}"><br />
 
 		Last Name: <input name="lastName" size="20" id="lastName" th:field="*{lastName}"><br />
