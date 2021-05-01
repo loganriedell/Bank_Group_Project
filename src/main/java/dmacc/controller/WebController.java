@@ -36,7 +36,7 @@ public class WebController {
 	EmployeeRepo empRepo;
 	
 	
-	@GetMapping({ "/", "viewAllUsers" })
+	@GetMapping({"/viewAllUsers" })
 	public String viewAllUsers(Model model) {
 		if (userRepo.findAll().isEmpty()) {
 			return addNewUser(model);
@@ -273,7 +273,9 @@ public class WebController {
 	}
 
 	if(firstName.equals(myEmployee.getFirstName())) {
-		return viewAllUsers(model);
+		String name = myEmployee.getFirstName() + " " + myEmployee.getLastName();
+		model.addAttribute("empName", name);
+		return "/employeeOptions";
 	}
 	 
 	return"/employeeLogin";

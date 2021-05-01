@@ -52,7 +52,24 @@
 		border: 2px solid black;
 		text-shadow: none;
 	}
-	
+	td{
+		border:solid black;
+		
+	}
+	th{
+		
+	}
+	.container{
+		display:flex;
+		width:100%;
+		
+		
+		
+	}
+	table{
+		
+		width:100%;
+	}
 	
 	
 	
@@ -60,30 +77,21 @@
 </style>
 </head>
 <body>
-<form>
-<h1>Users</h1>
-<table>
-	<tr th:each="currentUser: ${users}">
-	<td th:text="${currentUser.firstName}" />
-	<td th:text="${currentUser.lastName}" />
-	<td>
-		<a th:href="@{/viewUserAccounts/{id}(id=${currentUser.userID})}">
-			<input type="button" value="View Accounts">
-		</a>
-		<a th:href="@{/editUser/{userID}(userID=${currentUser.userID})}">
-			<input type="button" value="Edit User">
-		</a>
-		<a th:href="@{/deleteUser/{userID}(userID=${currentUser.userID})}">
-			<input type="button" value="Delete User">
-		</a>
-	</td>
-	</tr>
-</table><br>
-	<a th:href="@{/inputUser}">
-			<input type="button" value="Add User">
-		</a>
-	
-</form>
-
+<h1>Employees</h1>
+	<div class="container">
+		<table>
+			<tr>
+				<th>Employee ID</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Email</th>
+			</tr>
+			<tr th:each="currentEmp: ${employees}">
+				<td th:text="${currentEmp.employeeId}" />
+				<td th:text="${currentEmp.firstName}" />
+				<td th:text="${currentEmp.lastName}" />
+				<td th:text="${currentEmp.email}" />
+			</tr>
+		</table>
+	</div>
 </body>
-</html>
