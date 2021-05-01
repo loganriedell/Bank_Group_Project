@@ -1,5 +1,6 @@
 package dmacc.beans;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,7 +27,7 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String address;
-	private Date dateCreated;
+	private LocalDate dateCreated;
 	private String socialSecurity;
 	private String email;
 	
@@ -69,7 +70,7 @@ public class User {
 		this.lastName = lastName;
 		this.address = address;
 	}
-	public User(String firstName, String lastName, String address, Date dateCreated)
+	public User(String firstName, String lastName, String address, LocalDate dateCreated)
 	{
 		super();
 		this.firstName = firstName;
@@ -77,7 +78,7 @@ public class User {
 		this.address = address;
 		this.dateCreated = dateCreated;
 	}
-	public User(String firstName, String lastName, String address, Date dateCreated, String socialSecurity, String email)
+	public User(String firstName, String lastName, String address, LocalDate dateCreated, String socialSecurity, String email)
 	{
 		super();
 		this.firstName = firstName;
@@ -128,11 +129,11 @@ public class User {
 		this.address = address;
 	}
 
-	public Date getDateCreated() {
+	public LocalDate getDateCreated() {
 		return dateCreated;
 	}
 
-	public void setDateCreated(Date dateCreated) {
+	public void setDateCreated(LocalDate dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 
